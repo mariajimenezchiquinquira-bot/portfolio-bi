@@ -52,10 +52,7 @@ const SKILLS = [
   "Python",
   "SQL",
   "Excel",
-  "Claude Code",
   "Notion",
-  "Jira",
-  "MCP",
   "Power Automate",
   "R",
 ];
