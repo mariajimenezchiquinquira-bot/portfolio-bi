@@ -1,23 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FileText, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import {
-  ActionLink,
   CardBlock,
+  DocsLink,
   GithubLink,
   ProjectCard,
-  TableauLink,
 } from "@/components/portfolio/ProjectCard";
 import { ProjectImageGrid } from "@/components/portfolio/ImagePlaceholder";
-import segElbowMethod from "@/assets/projects/segmentation-5-elbow-method.png";
-import segDominantCategory from "@/assets/projects/segmentation-4-dominant-category.png";
-import segAvgTransaction from "@/assets/projects/segmentation-6-avg-transaction-by-cluster.png";
-import segCardFranchise from "@/assets/projects/segmentation-card-franchise.png";
-import segDomesticIntl from "@/assets/projects/segmentation-2-domestic-vs-international.png";
-import segWeekdayHeatmap from "@/assets/projects/segmentation-weekday-heatmap.png";
-import nuSplitJiraBoard from "@/assets/projects/nusplit-jira-board.png";
-import nuSplitNotionCover from "@/assets/projects/nusplit-notion-cover.png";
-import nuSplitNotionTimelineBacklog from "@/assets/projects/nusplit-notion-timeline-backlog.png";
-import nuSplitTableau from "@/assets/projects/nusplit-tableau-dashboard.png";
+import weworkValuation from "@/assets/projects/wework-valuation.png";
+import weworkTimeline from "@/assets/projects/wework-timeline.png";
+import weworkLossesDonut from "@/assets/projects/wework-losses-donut.png";
+import budlightRanking from "@/assets/projects/budlight-ranking.png";
+import budlightMarketShare from "@/assets/projects/budlight-market-share.png";
+import budlightSalesVolume from "@/assets/projects/budlight-sales-volume.png";
 import churnDashboard from "@/assets/projects/churn-capital-loss-dashboard-v2.png";
 
 export const Route = createFileRoute("/")({
@@ -109,6 +104,109 @@ function Index() {
           </h2>
           <div className="mt-8 grid gap-6">
             <ProjectCard
+              title="WeWork: Strategic Collapse of a $47B Business Model"
+              tech={["Business Case", "Strategy Analysis", "Business Understanding"]}
+              actions={
+                <DocsLink href="/docs/WeWork_Case_Study_Analysis.pdf" label="View Full Analysis" />
+              }
+            >
+              <CardBlock label="Problem">
+                WeWork reached a $47B valuation in January 2019 as the world's largest coworking
+                startup. By November 2023, it had filed for bankruptcy. What strategic decisions
+                turned a seemingly successful business model into a collapse?
+              </CardBlock>
+              <CardBlock label="Approach">
+                I analyzed WeWork's core business model (long-term leases subleased as short-term
+                flexible space), the unchecked spending culture under CEO Adam Neumann, and the
+                governance failures investors overlooked before the failed 2019 IPO.
+              </CardBlock>
+              <CardBlock label="Result">
+                WeWork went from $47B to bankruptcy in four years, accumulating $11.4B in net
+                losses (2020–mid 2023). Three critical decisions stand out: a structural risk
+                mismatch between lease commitments and client flexibility, aggressive expansion
+                without proven profitability, and weak governance that allowed personal spending
+                with company funds. My recommendation: a business model built on asymmetric
+                commitments to customers and suppliers needs a financial cushion — WeWork never
+                had one.
+              </CardBlock>
+              <div className="grid gap-3 sm:grid-cols-[1.5fr_1fr_1fr]">
+                <a
+                  href={weworkTimeline}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-center overflow-hidden rounded-md"
+                >
+                  <img
+                    src={weworkTimeline}
+                    alt="Timeline of WeWork's key strategic decisions"
+                    loading="lazy"
+                    className="max-h-[220px] w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </a>
+                <a
+                  href={weworkValuation}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-center overflow-hidden rounded-md"
+                >
+                  <img
+                    src={weworkValuation}
+                    alt="WeWork valuation from 2019 peak to 2023 bankruptcy"
+                    loading="lazy"
+                    className="max-h-[220px] w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </a>
+                <a
+                  href={weworkLossesDonut}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-center overflow-hidden rounded-md"
+                >
+                  <img
+                    src={weworkLossesDonut}
+                    alt="WeWork accumulated net losses 2020-2023"
+                    loading="lazy"
+                    className="max-h-[220px] w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </a>
+              </div>
+            </ProjectCard>
+
+            <ProjectCard
+              title="Bud Light / AB InBev: The Cost of a Marketing Decision"
+              tech={["Business Case", "Strategy Analysis", "Business Understanding"]}
+              actions={
+                <DocsLink href="/docs/BudLight_Case_Study_Analysis.pdf" label="View Full Analysis" />
+              }
+            >
+              <CardBlock label="Problem">
+                In early 2023, Bud Light was the best-selling beer in the U.S. A marketing campaign
+                sparked a large-scale boycott that cost AB InBev over $1 billion in lost sales and
+                the brand's #1 position in the U.S. beer market.
+              </CardBlock>
+              <CardBlock label="Approach">
+                I analyzed the original marketing decision, the brand's crisis response (or lack
+                of one), and the measurable impact on sales volume, market share, and brand value
+                in the months that followed.
+              </CardBlock>
+              <CardBlock label="Result">
+                Bud Light fell from #1 to #3 in U.S. beer sales, ceding the lead to Modelo Especial
+                (9.7% market share vs. 6.5%), while sales volume dropped nearly 30% year over year.
+                The lesson: it wasn't the campaign that cost the brand its position, but the
+                absence of a clear, consistent crisis response — leaving a vacuum both sides of
+                the controversy filled with negative narratives.
+              </CardBlock>
+              <ProjectImageGrid
+                columns={3}
+                images={[
+                  { src: budlightRanking, alt: "US beer brand ranking before and after the 2023 boycott" },
+                  { src: budlightMarketShare, alt: "US beer market share by brand in 2024" },
+                  { src: budlightSalesVolume, alt: "Bud Light sales volume before and after the boycott" },
+                ]}
+              />
+            </ProjectCard>
+
+            <ProjectCard
               title="Customer Churn & Capital Loss Analysis"
               tech={["Power BI", "DAX", "Data Visualization"]}
               actions={
@@ -135,106 +233,6 @@ function Index() {
                 loading="lazy"
                 className="mx-auto w-full max-w-3xl rounded-md bg-white object-contain"
               />
-            </ProjectCard>
-
-            <ProjectCard
-              title="Customer Segmentation for Credit Card Clients"
-              tech={["Python", "SQL"]}
-              actions={
-                <ActionLink href="/ConsumoTarjetasCredito.html" variant="solid">
-                  <FileText className="h-4 w-4" aria-hidden="true" />
-                  Notebook
-                </ActionLink>
-              }
-            >
-              <CardBlock label="Problem">
-                A bank needed to identify distinct consumption behaviors among 47,871 credit card
-                holders to design targeted promotions, but no predefined customer groups existed.
-              </CardBlock>
-              <CardBlock label="Approach">
-                I applied K-means clustering to segment clients based on spending patterns, using
-                one-hot encoding, feature scaling, and the elbow method to determine the optimal
-                number of clusters. I then used SQL to analyze each segment's dominant category,
-                card brand, and spending behavior.
-              </CardBlock>
-              <CardBlock label="Result">
-                Identified 4 distinct customer segments. The analysis revealed that 91% of clients
-                share a common national, in-store spending pattern, while a smaller international,
-                online-shopping segment emerged as a differentiated opportunity for targeted
-                promotions.
-              </CardBlock>
-              <ProjectImageGrid
-                columns={3}
-                images={[
-                  { src: segElbowMethod, alt: "Elbow method to select the number of clusters" },
-                  { src: segDominantCategory, alt: "Dominant spending category by cluster" },
-                  { src: segAvgTransaction, alt: "Average transaction amount by customer cluster" },
-                  { src: segCardFranchise, alt: "Most used card franchise by cluster" },
-                  { src: segDomesticIntl, alt: "Domestic vs. international spending by cluster" },
-                  { src: segWeekdayHeatmap, alt: "Spending by day of week and cluster" },
-                ]}
-              />
-            </ProjectCard>
-
-            <ProjectCard
-              title="Nu Split — Shared Payments Feature"
-              tech={["Notion", "Jira", "Tableau", "Scrum"]}
-              actions={
-                <TableauLink href="https://public.tableau.com/app/profile/maria.jimenez7845/viz/NuSplit-DashboardBI/Dashboard1" />
-              }
-            >
-              <CardBlock label="Problem">
-                Splitting shared expenses can be a hassle. When one person pays for everyone, they
-                have to calculate how much each person owes and then tell each friend how much to
-                send, often using a calculator, WhatsApp, or another app.
-              </CardBlock>
-              <CardBlock label="Solution">
-                I developed a simulated BI/product case study for "Nu Split," a concept feature that
-                lets Nubank users split expenses, request payments, and see who has paid. I planned
-                the product lifecycle in Notion, managed sprints in Jira, and built a Tableau
-                dashboard using simulated data to analyze adoption and completion rates.
-              </CardBlock>
-              <CardBlock label="Result">
-                An end-to-end case connecting product planning, agile execution, and BI to measure a
-                feature from concept to post-launch analysis.
-              </CardBlock>
-              <div className="flex flex-col gap-4">
-                <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
-                    Notion — Product Planning
-                  </p>
-                  <ProjectImageGrid
-                    images={[
-                      { src: nuSplitNotionCover, alt: "Nu Split Notion roadmap overview" },
-                      { src: nuSplitNotionTimelineBacklog, alt: "Nu Split Notion timeline and backlog board" },
-                    ]}
-                  />
-                </div>
-                <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
-                    Jira — Sprint Execution
-                  </p>
-                  <div className="mx-auto w-full max-w-2xl">
-                    <ProjectImageGrid
-                      images={[
-                        { src: nuSplitJiraBoard, alt: "Nu Split Jira Scrum board" },
-                      ]}
-                      columns={1}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
-                    Tableau — Adoption Dashboard
-                  </p>
-                  <ProjectImageGrid
-                    images={[
-                      { src: nuSplitTableau, alt: "Nu Split Tableau usage and adoption dashboard" },
-                    ]}
-                    columns={1}
-                  />
-                </div>
-              </div>
             </ProjectCard>
 
           </div>
