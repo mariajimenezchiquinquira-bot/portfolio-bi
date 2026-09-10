@@ -111,23 +111,17 @@ function Index() {
               }
             >
               <CardBlock label="Problem">
-                WeWork reached a $47B valuation in January 2019 as the world's largest coworking
-                startup. By November 2023, it had filed for bankruptcy. What strategic decisions
-                turned a seemingly successful business model into a collapse?
+                WeWork reached a $47 billion valuation in January 2019, but filed for bankruptcy
+                in November 2023. What strategic decisions drove this collapse?
               </CardBlock>
               <CardBlock label="Approach">
-                I analyzed WeWork's core business model (long-term leases subleased as short-term
-                flexible space), the unchecked spending culture under CEO Adam Neumann, and the
-                governance failures investors overlooked before the failed 2019 IPO.
+                I analyzed its long-term lease and flexible sublease model, the spending culture
+                under Adam Neumann, and the governance failures that preceded the 2019 IPO.
               </CardBlock>
               <CardBlock label="Result">
-                WeWork went from $47B to bankruptcy in four years, accumulating $11.4B in net
-                losses (2020–mid 2023). Three critical decisions stand out: a structural risk
-                mismatch between lease commitments and client flexibility, aggressive expansion
-                without proven profitability, and weak governance that allowed personal spending
-                with company funds. My recommendation: a business model built on asymmetric
-                commitments to customers and suppliers needs a financial cushion — WeWork never
-                had one.
+                WeWork went from $47 billion to bankruptcy, accumulating $11.4 billion in net
+                losses between 2020 and mid-2023. The collapse was driven by a structural risk
+                mismatch, expansion without proven profitability, and weak governance.
               </CardBlock>
               <div className="grid gap-3 sm:grid-cols-[1.5fr_1fr_1fr]">
                 <a
@@ -180,21 +174,19 @@ function Index() {
               }
             >
               <CardBlock label="Problem">
-                In early 2023, Bud Light was the best-selling beer in the U.S. A marketing campaign
-                sparked a large-scale boycott that cost AB InBev over $1 billion in lost sales and
-                the brand's #1 position in the U.S. beer market.
+                In early 2023, Bud Light was the best-selling beer in the U.S. A marketing
+                campaign sparked significant public backlash that affected sales and the brand's
+                position, costing AB InBev over $1 billion in losses.
               </CardBlock>
               <CardBlock label="Approach">
-                I analyzed the original marketing decision, the brand's crisis response (or lack
-                of one), and the measurable impact on sales volume, market share, and brand value
-                in the months that followed.
+                I analyzed the marketing decision, the crisis management response, and its
+                impact on sales, market share, and brand value.
               </CardBlock>
               <CardBlock label="Result">
-                Bud Light fell from #1 to #3 in U.S. beer sales, ceding the lead to Modelo Especial
-                (9.7% market share vs. 6.5%), while sales volume dropped nearly 30% year over year.
-                The lesson: it wasn't the campaign that cost the brand its position, but the
-                absence of a clear, consistent crisis response — leaving a vacuum both sides of
-                the controversy filled with negative narratives.
+                Bud Light fell from #1 to #3, while sales volume dropped nearly 30% year over
+                year. The case showed that unclear communication and an inconsistent crisis
+                response can amplify the impact of a controversy and erode a brand's competitive
+                position.
               </CardBlock>
               <ProjectImageGrid
                 columns={3}
