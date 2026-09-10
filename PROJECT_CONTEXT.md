@@ -104,3 +104,30 @@ Componente en `src/components/portfolio/ImagePlaceholder.tsx`. Preferencia confi
 Mismo flujo que ya estaba documentado: `git add -A`, `git commit`, `git push origin main` desde la carpeta del proyecto correspondiente. Vercel despliega solo tras el push (1-2 min). Si el usuario no ve cambios, recordarle recargar con Ctrl+Shift+R antes de asumir que el deploy falló, y verificar en Vercel > Deployments que el commit correcto quedó en Production.
 
 Nota técnica: al hacer `git commit`/`add` desde el bridge remoto a veces quedan archivos de lock (`.git/HEAD.lock`, `.git/index.lock`) que no se pueden borrar por permisos — si pasa, pedir permiso de borrado (`device_request_delete_permission`) sobre la carpeta `PortfolioHTML` y luego eliminar los `.lock` antes de reintentar el commit.
+
+## Secciones WeWork y Bud Light (business case studies) — agregadas en `portfolio-bi`
+
+Se agregaron dos `ProjectCard` nuevas al inicio de la sección de proyectos de `portfolio-bi` (antes de los proyectos técnicos), siguiendo la recomendación del profesor de la usuaria de incluir casos de negocio de estrategia/entendimiento del negocio, no solo análisis técnico:
+
+- **WeWork: Strategic Collapse of a $47B Business Model** — colapso del modelo de negocio de WeWork (2019 IPO fallido → quiebra 2023).
+- **Bud Light / AB InBev: The Cost of a Marketing Decision** — crisis de marca de Bud Light en 2023 y su impacto en ventas/market share.
+
+Ambas usan tags `["Business Case", "Strategy Analysis", "Business Understanding"]` y bloques `Problem` / `Approach` / `Result` como el resto del portafolio. Se quitaron las secciones "Nu Split — Shared Payments Feature", "Vehicle Contract Automation" y "Customer Segmentation for Credit Card Clients" de `portfolio-bi` para dejar solo: WeWork, Bud Light, Customer Churn & Capital Loss Analysis, Outline, UI Work.
+
+### Imágenes/gráficas
+Generadas con matplotlib replicando la paleta del portafolio (PURPLE `#8B7FE8`, GOLD `#D4B106`, YELLOW `#F0D43A`), en `src/assets/projects/`:
+- WeWork: `wework-valuation.png`, `wework-timeline.png`, `wework-losses-donut.png` (layout especial: grid `sm:grid-cols-[1.5fr_1fr_1fr]` en vez del `ProjectImageGrid` estándar, para que las 3 quepan en una fila con distinto ancho).
+- Bud Light: `budlight-ranking.png`, `budlight-market-share.png`, `budlight-sales-volume.png` (usa `ProjectImageGrid` estándar de 3 columnas).
+- El texto "boycott"/"boicot" se reemplazó por "brand crisis"/"crisis de marca" en la gráfica `budlight-sales-volume` (y en el texto del portafolio) porque no es un término universalmente conocido/entendido. El eje Y de esa gráfica se simplificó de "Sales Volume (Indexed, 100 = Pre-Crisis)" a "Sales Volume (%)" con barras en 100%/70%, sin el símbolo "~" ni el "(-30%)" al lado del número — se prefiere lo más limpio/directo posible en las etiquetas de gráficos.
+- También existen versiones en español de las 6 gráficas (sufijo `_es`, generadas pero no necesariamente usadas todavía en el sitio — confirmar con la usuaria antes de reemplazar el set en inglés que sí está en producción).
+
+### PDFs "View Full Analysis" (botón `DocsLink`)
+Cada card tiene un botón que abre un PDF de análisis más profundo (3 páginas, formato consultoría):
+- `public/docs/WeWork_Case_Study_Analysis.pdf` → botón en la card de WeWork.
+- `public/docs/BudLight_Case_Study_Analysis.pdf` → botón en la card de Bud Light.
+- El componente `DocsLink` (ícono `FileText`) ya existía en `ProjectCard.tsx`; se usó con `label="View Full Analysis"`.
+- **Importante:** los PDFs deben tener metadatos de título correctos (`/Title`), si no el navegador muestra "(anonymous)" en la pestaña al abrirlos. Los PDFs generados con ReportLab traen `/Title: (anonymous)` por defecto — hay que sobreescribir el metadata con `pypdf` (`PdfWriter.add_metadata`) antes de subirlos.
+- Preferencias de diseño de estos PDFs (estilo formal/académico, un solo color navy, sin mayúsculas sostenidas, captions "Figura N.", referencias APA, etc.) están guardadas en la memoria de la usuaria — ver `/topics/portafolio.md` en el sistema de memoria de Claude.
+
+### ⚠️ Lección aprendida: archivos hardlinkeados en este proyecto
+Varias veces `device_commit_files` reportó `"written"` exitosamente pero el archivo en el computador de la usuaria NO se actualizó (se quedó con el contenido viejo) — pasó tanto con PDFs como con `index.tsx`. La causa: los archivos están hardlinkeados (`nlink > 1`, probablemente por git o por OneDrive), y sobreescribir "in place" no siempre rompe el link correctamente sin `force: true`. **Protocolo a seguir de ahora en adelante:** después de cualquier `device_commit_files`, verificar con `device_stage_files` que el contenido nuevo realmente llegó (o pedirle a la usuaria que confirme con `git status` / abriendo el archivo) ANTES de decir que el cambio está listo — no asumir que "written" en la respuesta del tool significa que el archivo cambió de verdad.
