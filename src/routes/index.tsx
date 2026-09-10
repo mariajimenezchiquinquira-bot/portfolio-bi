@@ -112,11 +112,16 @@ function Index() {
             >
               <CardBlock label="Problem">
                 WeWork reached a $47 billion valuation in January 2019, but filed for bankruptcy
-                in November 2023. What strategic decisions drove this collapse?
+                in November 2023. Its model relied on long-term lease commitments while
+                generating revenue through flexible, short-term memberships, creating
+                significant financial exposure when demand weakened. What strategic decisions
+                drove this collapse?
               </CardBlock>
               <CardBlock label="Approach">
                 I analyzed its long-term lease and flexible sublease model, the spending culture
-                under Adam Neumann, and the governance failures that preceded the 2019 IPO.
+                under Adam Neumann, and the governance failures preceding the 2019 IPO. The
+                analysis focused on the relationship between aggressive expansion, financial
+                sustainability, and risk management.
               </CardBlock>
               <CardBlock label="Result">
                 WeWork went from $47 billion to bankruptcy, accumulating $11.4 billion in net
