@@ -52,7 +52,6 @@ const SKILLS = [
   "Python",
   "SQL",
   "Excel",
-  "Notion",
   "Power Automate",
   "R",
 ];
