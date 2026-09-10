@@ -5,6 +5,7 @@ import {
   DocsLink,
   GithubLink,
   ProjectCard,
+  TableauLink,
 } from "@/components/portfolio/ProjectCard";
 import { ProjectImageGrid } from "@/components/portfolio/ImagePlaceholder";
 import weworkValuation from "@/assets/projects/wework-valuation.png";
@@ -14,6 +15,10 @@ import budlightRanking from "@/assets/projects/budlight-ranking.png";
 import budlightMarketShare from "@/assets/projects/budlight-market-share.png";
 import budlightSalesVolume from "@/assets/projects/budlight-sales-volume.png";
 import churnDashboard from "@/assets/projects/churn-capital-loss-dashboard-v2.png";
+import nuSplitJiraBoard from "@/assets/projects/nusplit-jira-board.png";
+import nuSplitNotionCover from "@/assets/projects/nusplit-notion-cover.png";
+import nuSplitNotionTimelineBacklog from "@/assets/projects/nusplit-notion-timeline-backlog.png";
+import nuSplitTableau from "@/assets/projects/nusplit-tableau-dashboard.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,6 +41,17 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
+// NO ELIMINAR: proyecto "Bud Light / AB InBev" guardado en reserva
+// (retirado del portafolio en sept 2026, pendiente de volver a mostrarse).
+// Esta referencia existe solo para que herramientas de limpieza de archivos
+// no usados no borren estas imágenes ni sus imports.
+const RESERVED_BUDLIGHT_ASSETS = [
+  budlightRanking,
+  budlightMarketShare,
+  budlightSalesVolume,
+];
+void RESERVED_BUDLIGHT_ASSETS;
 
 const SKILLS = [
   "Business Intelligence",
@@ -167,35 +183,64 @@ function Index() {
             </ProjectCard>
 
             <ProjectCard
-              title="Bud Light / AB InBev: The Cost of a Marketing Decision"
-              tech={["Business Case", "Strategy Analysis", "Business Understanding"]}
+              title="Nu Split — Shared Payments Feature"
+              tech={["Notion", "Jira", "Tableau", "Scrum"]}
               actions={
-                <DocsLink href="/docs/BudLight_Case_Study_Analysis.pdf" label="View Full Analysis" />
+                <TableauLink href="https://public.tableau.com/app/profile/maria.jimenez7845/viz/NuSplit-DashboardBI/Dashboard1?publish=yes" />
               }
             >
               <CardBlock label="Problem">
-                In early 2023, Bud Light was the best-selling beer in the U.S. A marketing
-                campaign sparked significant public backlash that affected sales and the brand's
-                position, costing AB InBev over $1 billion in losses.
+                Splitting shared expenses can be a hassle. When one person pays for everyone, they
+                have to calculate how much each person owes and then tell each friend how much to
+                send, often using a calculator, WhatsApp, or another app.
               </CardBlock>
-              <CardBlock label="Approach">
-                I analyzed the marketing decision, the crisis management response, and its
-                impact on sales, market share, and brand value.
+              <CardBlock label="Solution">
+                I developed a simulated BI/product case study for "Nu Split," a concept feature that
+                lets Nubank users split expenses, request payments, and see who has paid. I planned
+                the product lifecycle in Notion, managed sprints in Jira, and built a Tableau
+                dashboard using simulated data to analyze adoption and completion rates.
               </CardBlock>
               <CardBlock label="Result">
-                Bud Light fell from #1 to #3, while sales volume dropped nearly 30% year over
-                year. The case showed that unclear communication and an inconsistent crisis
-                response can amplify the impact of a controversy and erode a brand's competitive
-                position.
+                An end-to-end case connecting product planning, agile execution, and BI to measure a
+                feature from concept to post-launch analysis.
               </CardBlock>
-              <ProjectImageGrid
-                columns={3}
-                images={[
-                  { src: budlightRanking, alt: "US beer brand ranking before and after the 2023 boycott" },
-                  { src: budlightMarketShare, alt: "US beer market share by brand in 2024" },
-                  { src: budlightSalesVolume, alt: "Bud Light sales volume before and after the boycott" },
-                ]}
-              />
+              <div className="flex flex-col gap-4">
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
+                    Notion — Product Planning
+                  </p>
+                  <ProjectImageGrid
+                    images={[
+                      { src: nuSplitNotionCover, alt: "Nu Split Notion roadmap overview" },
+                      { src: nuSplitNotionTimelineBacklog, alt: "Nu Split Notion timeline and backlog board" },
+                    ]}
+                  />
+                </div>
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
+                    Jira — Sprint Execution
+                  </p>
+                  <div className="mx-auto w-full max-w-2xl">
+                    <ProjectImageGrid
+                      images={[
+                        { src: nuSplitJiraBoard, alt: "Nu Split Jira Scrum board" },
+                      ]}
+                      columns={1}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
+                    Tableau — Adoption Dashboard
+                  </p>
+                  <ProjectImageGrid
+                    images={[
+                      { src: nuSplitTableau, alt: "Nu Split Tableau usage and adoption dashboard" },
+                    ]}
+                    columns={1}
+                  />
+                </div>
+              </div>
             </ProjectCard>
 
             <ProjectCard
