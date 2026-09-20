@@ -129,5 +129,34 @@ Cada card tiene un botón que abre un PDF de análisis más profundo (3 páginas
 - **Importante:** los PDFs deben tener metadatos de título correctos (`/Title`), si no el navegador muestra "(anonymous)" en la pestaña al abrirlos. Los PDFs generados con ReportLab traen `/Title: (anonymous)` por defecto — hay que sobreescribir el metadata con `pypdf` (`PdfWriter.add_metadata`) antes de subirlos.
 - Preferencias de diseño de estos PDFs (estilo formal/académico, un solo color navy, sin mayúsculas sostenidas, captions "Figura N.", referencias APA, etc.) están guardadas en la memoria de la usuaria — ver `/topics/portafolio.md` en el sistema de memoria de Claude.
 
+### Bud Light — retirada de portfolio-bi y reemplazada por Nu Split (sept 2026)
+- Se quitó del array de proyectos de `portfolio-bi` la card "Bud Light / AB InBev: The Cost of a Marketing Decision" y se puso en su mismo lugar (entre WeWork y Customer Churn & Capital Loss Analysis) la card "Nu Split — Shared Payments Feature", copiada de `portfolio-product`. Se agregó el import de `TableauLink` (ya existía el componente en `ProjectCard.tsx`) y los 4 imports de imágenes `nusplit-*.png` (ya estaban presentes en `src/assets/projects/` de `portfolio-bi` de una sesión anterior, no hubo que copiarlas).
+- El JSX completo de la card "Bud Light / AB InBev" quedó guardado en la memoria de Claude para poder reinsertarla más adelante en cualquiera de los 3 portafolios (Product, BI o Data Analysis), cuando la usuaria lo pida — igual que se hizo con "Premium Tool Request Automation".
+- Las 3 imágenes originales de esa card (`budlight-ranking.png`, `budlight-market-share.png`, `budlight-sales-volume.png`) siguen intactas en `src/assets/projects/` de `portfolio-bi` — no se borraron.
+- Para que una limpieza de "archivos no usados" no las elimine por error, se agregó en `src/routes/index.tsx` (antes de `const SKILLS`) un bloque marcado con el comentario `NO ELIMINAR` que mantiene esos 3 imports referenciados en una constante `RESERVED_BUDLIGHT_ASSETS` (con `void` para que no afecte el build ni se muestre en el sitio). Si se reinserta la card en Product o Data Analysis, esas 3 imágenes deben copiarse primero a la carpeta `assets/projects` de ese otro proyecto (no existen ahí todavía).
+
 ### ⚠️ Lección aprendida: archivos hardlinkeados en este proyecto
 Varias veces `device_commit_files` reportó `"written"` exitosamente pero el archivo en el computador de la usuaria NO se actualizó (se quedó con el contenido viejo) — pasó tanto con PDFs como con `index.tsx`. La causa: los archivos están hardlinkeados (`nlink > 1`, probablemente por git o por OneDrive), y sobreescribir "in place" no siempre rompe el link correctamente sin `force: true`. **Protocolo a seguir de ahora en adelante:** después de cualquier `device_commit_files`, verificar con `device_stage_files` que el contenido nuevo realmente llegó (o pedirle a la usuaria que confirme con `git status` / abriendo el archivo) ANTES de decir que el cambio está listo — no asumir que "written" en la respuesta del tool significa que el archivo cambió de verdad.
+
+## WeWork — actualización de contenido y corrección del build (sept 2026)
+
+Cambios hechos exclusivamente en `portfolio-bi` (no se tocó `portfolio-bi-es` ni `portfolio-product` en esta sesión, aunque `portfolio-bi-es` recibió cambios equivalentes por separado):
+
+### Texto y título
+- Título cambiado de "WeWork: Strategic Collapse of a $47B Business Model" a **"WeWork — Business Case"**.
+- Tags cambiados de `["Business Case", "Strategy Analysis", "Business Understanding"]` a `["Business Intelligence", "Business Strategy", "Financial Analysis"]`.
+- Los tres `CardBlock` se reescribieron y renombraron: `Problem`, `Analysis` (antes `Approach`), `Insight` (antes `Result`), con texto nuevo centrado en "qué revelan los datos financieros sobre el riesgo de sostenibilidad del negocio" en vez del enfoque anterior en decisiones de gobernanza/Adam Neumann.
+
+### Botón "View Full Analysis"
+- Antes apuntaba a `public/docs/WeWork_Case_Study_Analysis.pdf`.
+- Ahora apunta a `public/docs/WeWork_Case_Study_Analysis.html`, un análisis extendido en inglés (framework de 4 dimensiones, contexto, 3 hallazgos con gráficas SVG inline, decisiones corporativas, métricas operativas, respuesta operativa, conclusión y fuentes). El PDF viejo se dejó sin borrar en `public/docs/` por si se necesita.
+- Ojo: al reemplazar el HTML hubo un primer intento fallido en el que quedó guardada por error la versión en **español** (mezclada desde otro portafolio hermano `portfolio-bi-es`) — se corrigió verificando el `<h1>` del archivo resultante antes de dar el cambio por bueno. Lección: siempre releer/verificar el archivo HTML después de un `device_commit_files` cuando hay dos idiomas circulando en la misma sesión.
+
+### Imágenes
+- Se reemplazaron las 3 imágenes separadas (`wework-timeline.png`, `wework-valuation.png`, `wework-losses-donut.png`, mostradas en grid `sm:grid-cols-[1.5fr_1fr_1fr]`) por una sola captura combinada: `wework-dashboard-overview.png` (dashboard con 4 gráficas: valoración, pasivos vs. patrimonio, ingresos vs. pérdida neta, y crecimiento operativo). Las 3 imágenes viejas se eliminaron del repo.
+- Aquí también hubo un primer intento en el que, por error de este asistente, se subió la versión en **español** de esa misma captura (la que correspondía a `portfolio-bi-es`) en lugar de la versión en inglés — se detectó porque la usuaria lo señaló, y se corrigió releyendo el PNG resultante con la herramienta de lectura de imágenes antes de confirmar.
+
+### Corrección de un build roto en Vercel (causa raíz encontrada)
+- Un deploy anterior (commit que agregaba el proyecto "Payra Split") fallaba en Vercel con `Error: ENOENT: no such file or directory, open '.../payrasplit-*.png'` — las 4 imágenes de Payra Split (`payrasplit-jira-board.png`, `payrasplit-notion-cover.png`, `payrasplit-notion-timeline-backlog.png`, `payrasplit-tableau-dashboard.png`) estaban referenciadas en `index.tsx` pero nunca se habían agregado a git (quedaron como archivos "untracked" en la carpeta local). Se agregaron con `git add` en un commit separado y el build volvió a funcionar.
+- Lección para el futuro: si un deploy falla con `ENOENT` sobre un asset, lo primero a revisar es `git status --short` en busca de archivos `??` (untracked) que el código ya está importando.
+
