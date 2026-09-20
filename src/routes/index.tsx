@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin } from "lucide-react";
+import { FileText, Linkedin } from "lucide-react";
 import {
+  ActionLink,
   CardBlock,
   DocsLink,
   GithubLink,
   ProjectCard,
-  TableauLink,
 } from "@/components/portfolio/ProjectCard";
 import { ProjectImageGrid } from "@/components/portfolio/ImagePlaceholder";
 import weworkDashboardOverview from "@/assets/projects/wework-dashboard-overview.png";
@@ -13,10 +13,12 @@ import budlightRanking from "@/assets/projects/budlight-ranking.png";
 import budlightMarketShare from "@/assets/projects/budlight-market-share.png";
 import budlightSalesVolume from "@/assets/projects/budlight-sales-volume.png";
 import churnDashboard from "@/assets/projects/churn-capital-loss-dashboard-v2.png";
-import payraSplitJiraBoard from "@/assets/projects/payrasplit-jira-board.png";
-import payraSplitNotionCover from "@/assets/projects/payrasplit-notion-cover.png";
-import payraSplitNotionTimelineBacklog from "@/assets/projects/payrasplit-notion-timeline-backlog.png";
-import payraSplitTableau from "@/assets/projects/payrasplit-tableau-dashboard.png";
+import segElbowMethod from "@/assets/projects/segmentation-5-elbow-method.png";
+import segDominantCategory from "@/assets/projects/segmentation-4-dominant-category.png";
+import segAvgTransaction from "@/assets/projects/segmentation-6-avg-transaction-by-cluster.png";
+import segCardFranchise from "@/assets/projects/segmentation-card-franchise.png";
+import segDomesticIntl from "@/assets/projects/segmentation-2-domestic-vs-international.png";
+import segWeekdayHeatmap from "@/assets/projects/segmentation-weekday-heatmap.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -154,64 +156,43 @@ function Index() {
             </ProjectCard>
 
             <ProjectCard
-              title="Payra Split — Shared Payments Feature"
-              tech={["Notion", "Jira", "Tableau", "Scrum"]}
+              title="Segmentation — Cardholders by Spending Behavior"
+              tech={["Python", "SQL", "Scikit-learn", "K-means"]}
               actions={
-                <TableauLink href="https://public.tableau.com/app/profile/maria.jimenez7845/viz/SplitlySplit-DashboardBI/Dashboard1?publish=yes" />
+                <ActionLink href="/ConsumoTarjetasCredito.html" variant="solid">
+                  <FileText className="h-4 w-4" aria-hidden="true" />
+                  Notebook
+                </ActionLink>
               }
             >
               <CardBlock label="Problem">
-                Splitting shared expenses can be a hassle. When one person pays for everyone, they
-                have to calculate how much each person owes and then tell each friend how much to
-                send, often using a calculator, WhatsApp, or another app.
+                A bank had spending data from more than 47,000 cardholders, but no clear way to
+                group them based on how they used their cards, making it difficult to create
+                targeted promotions.
               </CardBlock>
-              <CardBlock label="Solution">
-                I developed a simulated BI/product case study for "Payra Split," a concept feature that
-                lets Payra users split expenses, request payments, and see who has paid. I planned
-                the product lifecycle in Notion, managed sprints in Jira, and built a Tableau
-                dashboard using simulated data to analyze adoption and completion rates.
+              <CardBlock label="Approach">
+                K-means was used to segment customers based on their transactional behavior, with
+                the Elbow Method used to determine the optimal number of segments. SQL queries
+                were then used to analyze usage frequency, average spending, and top spending
+                category for each group.
               </CardBlock>
               <CardBlock label="Result">
-                An end-to-end case connecting product planning, agile execution, and BI to measure a
-                feature from concept to post-launch analysis.
+                Three segments were identified: low-spending occasional users (42.7%), high-value
+                occasional users (33.1%), and frequent users (24.2%). Based on these profiles,
+                actions were defined to encourage usage among low-spending customers, strengthen
+                retention among high-value customers, and increase loyalty among frequent users.
               </CardBlock>
-              <div className="flex flex-col gap-4">
-                <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
-                    Notion — Product Planning
-                  </p>
-                  <ProjectImageGrid
-                    images={[
-                      { src: payraSplitNotionCover, alt: "Payra Split Notion roadmap overview" },
-                      { src: payraSplitNotionTimelineBacklog, alt: "Payra Split Notion timeline and backlog board" },
-                    ]}
-                  />
-                </div>
-                <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
-                    Jira — Sprint Execution
-                  </p>
-                  <div className="mx-auto w-full max-w-2xl">
-                    <ProjectImageGrid
-                      images={[
-                        { src: payraSplitJiraBoard, alt: "Payra Split Jira Scrum board" },
-                      ]}
-                      columns={1}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-card-foreground/50">
-                    Tableau — Adoption Dashboard
-                  </p>
-                  <ProjectImageGrid
-                    images={[
-                      { src: payraSplitTableau, alt: "Payra Split Tableau usage and adoption dashboard" },
-                    ]}
-                    columns={1}
-                  />
-                </div>
-              </div>
+              <ProjectImageGrid
+                columns={3}
+                images={[
+                  { src: segElbowMethod, alt: "Elbow method to select the number of clusters" },
+                  { src: segDominantCategory, alt: "Dominant spending category by cluster" },
+                  { src: segAvgTransaction, alt: "Average transaction amount by customer cluster" },
+                  { src: segCardFranchise, alt: "Most used card franchise by cluster" },
+                  { src: segDomesticIntl, alt: "Domestic vs. international spending by cluster" },
+                  { src: segWeekdayHeatmap, alt: "Spending by day of week and cluster" },
+                ]}
+              />
             </ProjectCard>
 
             <ProjectCard
