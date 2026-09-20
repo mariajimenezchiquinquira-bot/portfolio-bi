@@ -8,9 +8,7 @@ import {
   TableauLink,
 } from "@/components/portfolio/ProjectCard";
 import { ProjectImageGrid } from "@/components/portfolio/ImagePlaceholder";
-import weworkValuation from "@/assets/projects/wework-valuation.png";
-import weworkTimeline from "@/assets/projects/wework-timeline.png";
-import weworkLossesDonut from "@/assets/projects/wework-losses-donut.png";
+import weworkDashboardOverview from "@/assets/projects/wework-dashboard-overview.png";
 import budlightRanking from "@/assets/projects/budlight-ranking.png";
 import budlightMarketShare from "@/assets/projects/budlight-market-share.png";
 import budlightSalesVolume from "@/assets/projects/budlight-sales-volume.png";
@@ -140,47 +138,19 @@ function Index() {
                 growth and its ability to sustain that growth financially. The analysis showed
                 how financial data can reveal strategic and business sustainability risks.
               </CardBlock>
-              <div className="grid gap-3 sm:grid-cols-[1.5fr_1fr_1fr]">
-                <a
-                  href={weworkTimeline}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-center overflow-hidden rounded-md"
-                >
-                  <img
-                    src={weworkTimeline}
-                    alt="Timeline of WeWork's key strategic decisions"
-                    loading="lazy"
-                    className="max-h-[220px] w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                </a>
-                <a
-                  href={weworkValuation}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-center overflow-hidden rounded-md"
-                >
-                  <img
-                    src={weworkValuation}
-                    alt="WeWork valuation from 2019 peak to 2023 bankruptcy"
-                    loading="lazy"
-                    className="max-h-[220px] w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                </a>
-                <a
-                  href={weworkLossesDonut}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-center overflow-hidden rounded-md"
-                >
-                  <img
-                    src={weworkLossesDonut}
-                    alt="WeWork accumulated net losses 2020-2023"
-                    loading="lazy"
-                    className="max-h-[220px] w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                </a>
-              </div>
+              <a
+                href={weworkDashboardOverview}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-center overflow-hidden rounded-md"
+              >
+                <img
+                  src={weworkDashboardOverview}
+                  alt="WeWork key metrics dashboard: valuation, liabilities vs. equity, revenue vs. net loss, and operating growth"
+                  loading="lazy"
+                  className="mx-auto w-full max-w-3xl rounded-md bg-white object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </a>
             </ProjectCard>
 
             <ProjectCard
