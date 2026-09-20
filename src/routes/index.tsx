@@ -15,10 +15,10 @@ import budlightRanking from "@/assets/projects/budlight-ranking.png";
 import budlightMarketShare from "@/assets/projects/budlight-market-share.png";
 import budlightSalesVolume from "@/assets/projects/budlight-sales-volume.png";
 import churnDashboard from "@/assets/projects/churn-capital-loss-dashboard-v2.png";
-import nuSplitJiraBoard from "@/assets/projects/nusplit-jira-board.png";
-import nuSplitNotionCover from "@/assets/projects/nusplit-notion-cover.png";
-import nuSplitNotionTimelineBacklog from "@/assets/projects/nusplit-notion-timeline-backlog.png";
-import nuSplitTableau from "@/assets/projects/nusplit-tableau-dashboard.png";
+import payraSplitJiraBoard from "@/assets/projects/payrasplit-jira-board.png";
+import payraSplitNotionCover from "@/assets/projects/payrasplit-notion-cover.png";
+import payraSplitNotionTimelineBacklog from "@/assets/projects/payrasplit-notion-timeline-backlog.png";
+import payraSplitTableau from "@/assets/projects/payrasplit-tableau-dashboard.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -115,29 +115,30 @@ function Index() {
           </h2>
           <div className="mt-8 grid gap-6">
             <ProjectCard
-              title="WeWork: Strategic Collapse of a $47B Business Model"
-              tech={["Business Case", "Strategy Analysis", "Business Understanding"]}
+              title="WeWork — Business Case"
+              tech={["Business Intelligence", "Business Strategy", "Financial Analysis"]}
               actions={
-                <DocsLink href="/docs/WeWork_Case_Study_Analysis.pdf" label="View Full Analysis" />
+                <DocsLink href="/docs/WeWork_Case_Study_Analysis.html" label="View Full Analysis" />
               }
             >
               <CardBlock label="Problem">
-                WeWork reached a $47 billion valuation in January 2019, but filed for bankruptcy
-                in November 2023. Its model relied on long-term lease commitments while
-                generating revenue through flexible, short-term memberships, creating
-                significant financial exposure when demand weakened. What strategic decisions
-                drove this collapse?
+                WeWork reached a USD 47 billion valuation in 2019, but ultimately filed for
+                bankruptcy in 2023. The challenge was to use financial and operational data to
+                understand what was behind this growth and identify signals of risks to the
+                business's sustainability.
               </CardBlock>
-              <CardBlock label="Approach">
-                I analyzed its long-term lease and flexible sublease model, the spending culture
-                under Adam Neumann, and the governance failures preceding the 2019 IPO. The
-                analysis focused on the relationship between aggressive expansion, financial
-                sustainability, and risk management.
+              <CardBlock label="Analysis">
+                I analyzed the evolution of revenue, losses, costs, liabilities, equity, and
+                financial commitments, connecting these indicators to the company's business
+                model and expansion strategy. The goal was not only to understand what was
+                happening, but also which characteristics of the business model and which
+                decisions were driving these results.
               </CardBlock>
-              <CardBlock label="Result">
-                WeWork went from $47 billion to bankruptcy, accumulating $11.4 billion in net
-                losses between 2020 and mid-2023. The collapse was driven by a structural risk
-                mismatch, expansion without proven profitability, and weak governance.
+              <CardBlock label="Insight">
+                WeWork's growth was accompanied by significant losses, increasing financial
+                obligations, and long-term commitments, revealing a gap between the company's
+                growth and its ability to sustain that growth financially. The analysis showed
+                how financial data can reveal strategic and business sustainability risks.
               </CardBlock>
               <div className="grid gap-3 sm:grid-cols-[1.5fr_1fr_1fr]">
                 <a
@@ -183,10 +184,10 @@ function Index() {
             </ProjectCard>
 
             <ProjectCard
-              title="Nu Split — Shared Payments Feature"
+              title="Payra Split — Shared Payments Feature"
               tech={["Notion", "Jira", "Tableau", "Scrum"]}
               actions={
-                <TableauLink href="https://public.tableau.com/app/profile/maria.jimenez7845/viz/NuSplit-DashboardBI/Dashboard1?publish=yes" />
+                <TableauLink href="https://public.tableau.com/app/profile/maria.jimenez7845/viz/SplitlySplit-DashboardBI/Dashboard1?publish=yes" />
               }
             >
               <CardBlock label="Problem">
@@ -195,8 +196,8 @@ function Index() {
                 send, often using a calculator, WhatsApp, or another app.
               </CardBlock>
               <CardBlock label="Solution">
-                I developed a simulated BI/product case study for "Nu Split," a concept feature that
-                lets Nubank users split expenses, request payments, and see who has paid. I planned
+                I developed a simulated BI/product case study for "Payra Split," a concept feature that
+                lets Payra users split expenses, request payments, and see who has paid. I planned
                 the product lifecycle in Notion, managed sprints in Jira, and built a Tableau
                 dashboard using simulated data to analyze adoption and completion rates.
               </CardBlock>
@@ -211,8 +212,8 @@ function Index() {
                   </p>
                   <ProjectImageGrid
                     images={[
-                      { src: nuSplitNotionCover, alt: "Nu Split Notion roadmap overview" },
-                      { src: nuSplitNotionTimelineBacklog, alt: "Nu Split Notion timeline and backlog board" },
+                      { src: payraSplitNotionCover, alt: "Payra Split Notion roadmap overview" },
+                      { src: payraSplitNotionTimelineBacklog, alt: "Payra Split Notion timeline and backlog board" },
                     ]}
                   />
                 </div>
@@ -223,7 +224,7 @@ function Index() {
                   <div className="mx-auto w-full max-w-2xl">
                     <ProjectImageGrid
                       images={[
-                        { src: nuSplitJiraBoard, alt: "Nu Split Jira Scrum board" },
+                        { src: payraSplitJiraBoard, alt: "Payra Split Jira Scrum board" },
                       ]}
                       columns={1}
                     />
@@ -235,7 +236,7 @@ function Index() {
                   </p>
                   <ProjectImageGrid
                     images={[
-                      { src: nuSplitTableau, alt: "Nu Split Tableau usage and adoption dashboard" },
+                      { src: payraSplitTableau, alt: "Payra Split Tableau usage and adoption dashboard" },
                     ]}
                     columns={1}
                   />
